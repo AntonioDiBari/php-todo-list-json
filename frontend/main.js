@@ -8,6 +8,9 @@ const app = createApp({
         text: "",
         state: false,
       },
+      apiParams: {
+        headers: { "Content-Type": "multipart/form-data" },
+      },
     };
   },
   methods: {
@@ -27,19 +30,23 @@ const app = createApp({
       const data = {
         text: newTaskCopy.text,
       };
-      const params = {
-        headers: { "Content-Type": "multipart/form-data" },
-      };
-      axios.post("../backend/api/store-item.php", data, params).then((res) => {
-        this.tasks = res.data;
-      });
+      axios
+        .post("../backend/api/store-item.php", data, this.apiParams)
+        .then((res) => {
+          this.tasks = res.data;
+        });
     },
     // deleteTask(currentTask) {
     //   this.tasks.splice(currentTask, 1);
     // },
-    // changeState(currentTask) {
-    //   this.tasks[currentTask].state = !this.tasks[currentTask].state;
-    // },
+    changeState(currentTask) {
+      const data = [currentTask];
+      axios
+        .post("../backend/api/change-state.php", data, this.apiParams)
+        .then((res) => {
+          this.tasks = res.data;
+        });
+    },
   },
   mounted() {
     this.fetchList();
