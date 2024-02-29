@@ -1,1 +1,7 @@
-[{"text":"Fare la spesa","state":false},{"text":"Fare le pulizie","state":true},{"text":"Fare il bucato","state":false},{"text":"Rinnovare la patente","state":true},{"text":"Portare a spasso il cane","state":false},{"text":"Prendere la compressa","state":true},{"text":"Aggiunto con store","state":false},{"text":"Aggiungo un task e lo segno fatto","state":true}]
+[
+  { "text": "Fare la spesa", "state": false },
+  { "text": "Fare le pulizie", "state": false },
+  { "text": "Fare il bucato", "state": false },
+  { "text": "Rinnovare la patente", "state": true },
+  { "text": "Portare a spasso il cane", "state": false }
+]

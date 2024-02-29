@@ -36,9 +36,14 @@ const app = createApp({
           this.tasks = res.data;
         });
     },
-    // deleteTask(currentTask) {
-    //   this.tasks.splice(currentTask, 1);
-    // },
+    deleteTask(currentTask) {
+      const data = [currentTask];
+      axios
+        .post("../backend/api/delete-item.php", data, this.apiParams)
+        .then((res) => {
+          this.tasks = res.data;
+        });
+    },
     changeState(currentTask) {
       const data = [currentTask];
       axios
