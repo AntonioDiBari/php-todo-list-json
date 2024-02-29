@@ -12,11 +12,9 @@ const app = createApp({
   },
   methods: {
     fetchList() {
-      axios
-        .get("http://localhost/php-todo-list-json/backend/api/get-todolist.php")
-        .then((res) => {
-          this.tasks = res.data;
-        });
+      axios.get("../backend/api/get-todolist.php").then((res) => {
+        this.tasks = res.data;
+      });
     },
     addTask() {
       if (!this.newTask.text || this.newTask.text.length <= 5) {
@@ -26,16 +24,15 @@ const app = createApp({
       const newTaskCopy = { ...this.newTask };
       this.newTask.text = "";
 
+      const data = {
+        text: newTaskCopy.text,
+      };
       const params = {
         headers: { "Content-Type": "multipart/form-data" },
       };
-      axios
-        .post(
-          "http://localhost/php-todo-list-json/backend/api/store-item.php",
-          newTaskCopy,
-          params
-        )
-        .then((res) => console.log(res.data));
+      axios.post("../backend/api/store-item.php", data, params).then((res) => {
+        this.tasks = res.data;
+      });
     },
     // deleteTask(currentTask) {
     //   this.tasks.splice(currentTask, 1);
